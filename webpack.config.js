@@ -7,17 +7,18 @@
 
 const path = require( 'path' );
 const { styles } = require( '@ckeditor/ckeditor5-dev-utils' );
+const CKEditorWebpackPlugin = require('@ckeditor/ckeditor5-dev-webpack-plugin')
+const TerserWebpackPlugin = require('terser-webpack-plugin')
 
 module.exports = {
     // https://webpack.js.org/configuration/entry-context/
     entry: './app.js',
 
     // https://webpack.js.org/configuration/output/
-    output: {
-        path: path.resolve( __dirname, 'dist' ),
-        filename: 'bundle.js'
-    },
-
+    // output: {
+    //     path: path.resolve( __dirname, 'dist' ),
+    //     filename: 'bundle.js'
+    // }, 
     devServer: {
         static: {
             directory: './'
@@ -25,6 +26,39 @@ module.exports = {
         compress: true,
         port: 9000
     },
+
+    output: {
+        library: 'ClassicEditor',
+    
+        path: path.resolve(__dirname, 'dist'),
+        filename: 'ckeditor.js',
+        libraryTarget: 'umd',
+        libraryExport: 'default',
+    },
+
+    optimization: {
+        minimizer: [
+          new TerserWebpackPlugin({
+            sourceMap: true,
+            terserOptions: {
+              output: {
+                // Preserve CKEditor 5 license comments.
+                comments: /^!/,
+              },
+            },
+            extractComments: false,
+          }),
+        ],
+      },
+
+    plugins: [
+        new CKEditorWebpackPlugin({
+            language: 'zh-cn',
+            additionalLanguages: 'all',
+            buildAllTranslationsToSeparateFiles: true,
+            addMainLanguageTranslationsToAllAssets: true,
+        })
+    ],
 
     module: {
         rules: [
