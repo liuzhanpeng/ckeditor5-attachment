@@ -172,6 +172,7 @@ ClassicEditor.defaultConfig = {
             "redo",
 		]
 	},
+    removePlugins: ["MediaEmbedToolbar"],
     language: "zh-cn",
     fontFamily: {
         options: [
@@ -233,27 +234,28 @@ ClassicEditor.defaultConfig = {
         uploadUrl: ''
     },
     htmlSupport: {
-        allow: [
-          {
+        allow: [{
             name: /.*/,
             attributes: true,
             classes: true,
             styles: true,
-          },
-        ],
-      },
-      htmlEmbed: {
+        }]
+    },
+    htmlEmbed: {
         showPreviews: true,
         sanitizeHtml: (inputHtml) => {
-          // Strip unsafe elements and attributes, e.g.:
-          // the `<script>` elements and `on*` attributes.
-          // const outputHtml = sanitize(inputHtml)
-    
           return {
-            html: inputHtml, //outputHtml,
-            // true or false depending on whether the sanitizer stripped anything.
+            html: inputHtml,
             hasChanged: true,
           };
-        },
+        }
     },
+    mediaEmbed: {
+        providers: [
+            {
+                name: 'media',
+                url: /^.*/
+            }
+        ]
+    }
 }

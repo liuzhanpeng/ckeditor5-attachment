@@ -32,7 +32,6 @@ class UploadAdapter {
     xhr.addEventListener('abort', () => reject())
     xhr.addEventListener('load', async () => {
       const response = xhr.response
-      console.log(xhr);
 
       if (!response || response.code != 0) {
         reject((response && response.msg) ?? genericErrorText);

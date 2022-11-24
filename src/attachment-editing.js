@@ -2,7 +2,7 @@ import { Plugin } from "@ckeditor/ckeditor5-core";
 
 export default class AttachmentEditing extends Plugin {
     init() {
-        console.log('attachment editing init');
+        // console.log('attachment editing init');
 
         this._defineSchema();
         this._defineConverters();

@@ -7,7 +7,7 @@ import { UploadAdapter } from "./uploader-adapter";
 
 export default class AttachmentUI extends Plugin {
     init() {
-        console.log('attachment ui init');
+        // console.log('attachment ui init');
 
         const editor = this.editor;
         const options = editor.config.get('attachment');
