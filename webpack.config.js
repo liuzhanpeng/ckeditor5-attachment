@@ -12,7 +12,9 @@ const TerserWebpackPlugin = require('terser-webpack-plugin')
 
 module.exports = {
     // https://webpack.js.org/configuration/entry-context/
-    entry: './app.js',
+    // entry: './app.js',
+
+    entry: path.resolve(__dirname, 'src', 'ckeditor.js'),
 
     // https://webpack.js.org/configuration/output/
     // output: {
@@ -30,7 +32,7 @@ module.exports = {
     output: {
         library: 'ClassicEditor',
     
-        path: path.resolve(__dirname, 'dist'),
+        path: path.resolve(__dirname, 'build'),
         filename: 'ckeditor.js',
         libraryTarget: 'umd',
         libraryExport: 'default',
